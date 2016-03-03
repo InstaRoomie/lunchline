@@ -19,7 +19,7 @@ angular.module('lunchline.services', [])
   var logout = function(){
     ref.unauth();
   }
-  
+
   var fbLogin = function(){
     ref.authWithOAuthPopup("facebook", function(error, authData) {
       if (error) {
@@ -41,7 +41,7 @@ angular.module('lunchline.services', [])
   var getData = function(userLoc, callback) {
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/rest/search',
+      url: 'http://localhost:8080/api/yelp/search',
       data: userLoc
     }).then(function success(data) {
         var collection = data.data.map(function(restaurant) {
