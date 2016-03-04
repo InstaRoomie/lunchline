@@ -277,6 +277,21 @@ angular.module('lunchline.services', [])
     });
   };
 
+  var removeFavorite = function(user, rest) {
+    var data = {
+      uid: user,
+      favorite: rest
+    };
+    return $http({
+      method: 'PUT',
+      url: 'http://localhost:8080/api/user/removeFave',
+      data: data
+    })
+    .then(function(res){
+      console.log(res.body);
+    });
+  };
+
   var getFavorites = function(user) {
     user.location = JSON.parse(sessionStorage['locationStorage']);
     console.log(user.location);
@@ -292,6 +307,7 @@ angular.module('lunchline.services', [])
 
   return {
     addFavorites: addFavorites,
-    getFavorites: getFavorites
+    getFavorites: getFavorites,
+    removeFavorite: removeFavorite
   }
 })

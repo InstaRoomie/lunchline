@@ -9,9 +9,17 @@ angular.module('lunchline.restaurant', [])
     } else {
       Data.getRecentUpdate(function(data) {
         $ionicHistory.goBack();
-      });    
+      });
     }
   };
+
+  $scope.checkHist = function(){
+    if($ionicHistory.backTitle() === "Favorites List"){
+      return false
+    } else {
+      return true
+    }
+  }
 
   $scope.restaurant = {
     id: '',
@@ -133,6 +141,11 @@ angular.module('lunchline.restaurant', [])
   $scope.addFavorites = function() {
     $scope.user = JSON.parse($window.localStorage['firebase:session::instalunchline']).uid;
     Favorites.addFavorites($scope.user, $scope.restaurant);
+  }
+
+  $scope.removeFavorite = function() {
+    $scope.user = JSON.parse($window.localStorage['firebase:session::instalunchline']).uid;
+    Favorites.removeFavorite($scope.user, $scope.restaurant);
   }
 
   // Sweet Alert popup to thank users when they check in a wait time.
