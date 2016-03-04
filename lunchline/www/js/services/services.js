@@ -52,7 +52,7 @@ angular.module('lunchline.services', [])
   var getData = function(userLoc, callback) {
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/rest/search',
+      url: 'http://instalunchlinedev.herokuapp.com/api/rest/search',
       data: userLoc
     }).then(function success(data) {
       console.log(data)
@@ -95,7 +95,7 @@ angular.module('lunchline.services', [])
     console.log('Get recent update is called here is the collection', collection);
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/rest/recent',
+      url: 'http://instalunchlinedev.herokuapp.com/api/rest/recent',
       data: collection
     }).then(function success(data) {
         console.log(data);
@@ -164,7 +164,7 @@ angular.module('lunchline.services', [])
   function updateWait(objToSend) {
     $http({
       method: 'PUT',
-      url: 'http://localhost:8080/api/rest/update',
+      url: 'http://instalunchlinedev.herokuapp.com/api/rest/update',
       data: objToSend
     }).then(function successCallback(response) {
       // console.log('PUT: Sent ' + JSON.stringify(objToSend) + ' successfully');
@@ -266,7 +266,7 @@ angular.module('lunchline.services', [])
   var getUser = function(user) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/profile',
+      url: 'http://instalunchlinedev.herokuapp.com/api/user/profile',
       data: user
     }).then(function(res) {
       return res.data;
@@ -276,7 +276,7 @@ angular.module('lunchline.services', [])
   var sendUser = function(user) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/user',
+      url: 'http://instalunchlinedev.herokuapp.com/api/user/user',
       data: user
     }).then(function(res) {
       return res.data;
@@ -296,7 +296,7 @@ angular.module('lunchline.services', [])
     };
     return $http({
       method: 'PUT',
-      url: 'http://localhost:8080/api/user/favorite',
+      url: 'http://instalunchlinedev.herokuapp.com/api/user/favorite',
       data: data
     })
     .then(function(res){
@@ -312,7 +312,7 @@ angular.module('lunchline.services', [])
     console.log('services.js')
     return $http({
       method: 'PUT',
-      url: 'http://localhost:8080/api/user/removeFave',
+      url: 'http://instalunchlinedev.herokuapp.com/api/user/removeFave',
       data: data
     })
     .then(function(res){
@@ -327,7 +327,7 @@ angular.module('lunchline.services', [])
     console.log(user.location);
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/getFave',
+      url: 'http://instalunchlinedev.herokuapp.com/api/user/getFave',
       data: user
     }).then(function(res) {
       console.log(res.data);
