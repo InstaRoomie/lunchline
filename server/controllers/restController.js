@@ -49,7 +49,6 @@ exports.getRestaurants = function(req, res) {
         Restaurant.findOne({
           id: item.id
         }, function(err, obj) {
-          console.log(obj);
           if (obj === null) {
             var restaurant = new Restaurant({
               wait: "3_grey",
@@ -79,12 +78,11 @@ exports.getRestaurants = function(req, res) {
               // ** TODO **: Rewrite condition that JSON is returned so it doesn't fail with too few results
               results.push(restaurant);
               console.log('RESULTS LENGTH : ', results.length);
-              if (results.length === 18) {
+              if (results.length === place.results.length) {
                 res.json(results);
               }
             });
           } else {
-            console.log("objjjjjj", obj);
             helpers.avgTime(obj, function(color){
               if (lat || lng) {
                 obj.distance = helpers.distance(lat, lng, obj.geometry.location.lat, obj.geometry.location.lng);
@@ -94,7 +92,7 @@ exports.getRestaurants = function(req, res) {
               // ** TODO **: Rewrite condition that JSON is returned so it doesn't fail with too few results
               console.log('RESULTS LENGTH : ', results.length);
 
-              if (results.length === 18) {
+              if (results.length === place.results.length) {
                 res.json(results);
               }
             });
@@ -143,7 +141,7 @@ exports.getRecent = function(req, res) {
             console.log(results);
             res.json(results);
           }
-          
+
         });
     });
   });

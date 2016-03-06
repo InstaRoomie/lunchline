@@ -55,6 +55,7 @@ angular.module('lunchline.services', [])
       url: 'http://localhost:8080/api/rest/search',
       data: userLoc
     }).then(function success(data) {
+      console.log(data)
         collection = data.data.map(function(restaurant) {
           return {
             restaurant: restaurant
@@ -65,6 +66,26 @@ angular.module('lunchline.services', [])
       function error(response) {
         console.log("ERROR: ", response);
       });
+  };
+
+  var getFavorites = function(user, callback) {
+    user.location = JSON.parse(sessionStorage['locationStorage']);
+    console.log(user.location);
+    return $http({
+      method: 'POST',
+      url: 'http://localhost:8080/api/user/getFave',
+      data: user
+    }).then(function success(data) {
+      collection = data.data.map(function(restaurant) {
+        return {
+          restaurant: restaurant
+        };
+      });
+      callback(collection);
+    },
+    function errer(response) {
+      console.log("ERROR: ", response);
+    });
   };
   // Storage of clicked item on listView so that restView can pull up data
   var clickedItem = {};
@@ -104,7 +125,8 @@ angular.module('lunchline.services', [])
     clickedItem: clickedItem,
     getRecentUpdate: getRecentUpdate,
     getCollection: getCollection,
-    getSearchCalled: getSearchCalled
+    getSearchCalled: getSearchCalled,
+    getFavorites: getFavorites
   }
 // Distance factory: calculates the distance of a lat/long from the user's lat/long
 })
@@ -287,6 +309,7 @@ angular.module('lunchline.services', [])
       uid: user,
       favorite: rest
     };
+    console.log('services.js')
     return $http({
       method: 'PUT',
       url: 'http://localhost:8080/api/user/removeFave',
@@ -296,6 +319,8 @@ angular.module('lunchline.services', [])
       console.log(res.body);
     });
   };
+
+  var clickedItem;
 
   var getFavorites = function(user) {
     user.location = JSON.parse(sessionStorage['locationStorage']);
@@ -313,6 +338,7 @@ angular.module('lunchline.services', [])
   return {
     addFavorites: addFavorites,
     getFavorites: getFavorites,
-    removeFavorite: removeFavorite
+    removeFavorite: removeFavorite,
+    clickedItem: clickedItem
   }
 })

@@ -56,7 +56,7 @@ angular.module('lunchline.restaurant', [])
   }
 
   if (Data.clickedItem.id) {
-
+    console.log(Data.clickedItem.id)
     // Get data from clicked item
     var item = Data.clickedItem;
 

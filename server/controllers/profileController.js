@@ -59,6 +59,31 @@ exports.addFavorites = function(req, res) {
   });
 };
 
+exports.removeFavorites = function(req, res) {
+  console.log('removeFavorites')
+  console.log(req.body)
+  Profile.findOne({uid: req.body.uid}, function(err, profile) {
+    if(err) {
+      throw err;
+    }
+    var fave = profile.favorites;
+    console.log(fave)
+    for(var i = 0; i < fave.length; i++) {
+      if(fave[i]["id"] === req.body.favorite.id) {
+        fave.splice(i,1);
+      }
+    }
+    console.log(fave)
+    Profile.findOneAndUpdate({uid: req.body.uid}, {favorites: fave}, {upsert: true}, function(err, profile) {
+      if(err) {
+        console.log("user favorites not removed");
+        throw err;
+      }
+      res.sendStatus(200);
+    });
+  });
+};
+
 exports.getFavorites = function(req, res) {
   console.log(req.body.location);
   var lat = req.body.location.lat;
