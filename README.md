@@ -29,5 +29,9 @@ These are just a few of the ideas we want to implement and this list will consta
 This project was created by:
 * Rick Yeh - Product Owner/frontend developer
 * Andy MacDonald - Scrum Master/backend developer
+* Daniel Rizko - Software Engineer
+* Bobby Chong - Software Engineer
+* Daniel Kim - Software Engineer
+* Ethan Rubio
 * Monica Grandy - Backend developer
 * Cameron Roark - Frontend developer
