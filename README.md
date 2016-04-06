@@ -32,6 +32,6 @@ This project was created by:
 * Daniel Rizko - Software Engineer
 * Bobby Chong - Software Engineer
 * Daniel Kim - Software Engineer
-* Ethan Rubio
+* Ethan Rubio - Software Engineer
 * Monica Grandy - Backend developer
 * Cameron Roark - Frontend developer
