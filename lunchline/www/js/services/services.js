@@ -51,7 +51,7 @@ angular.module('lunchline.services', [])
   var getData = function(userLoc, callback) {
     $http({
       method: 'POST',
-      url: '/api/rest/search',
+      url: 'https://instalunchline.com/api/rest/search',
       data: userLoc
     }).then(function success(data) {
         collection = data.data.map(function(restaurant) {
@@ -70,7 +70,7 @@ angular.module('lunchline.services', [])
     user.location = JSON.parse(sessionStorage['locationStorage']);
     return $http({
       method: 'POST',
-      url: '/api/user/getFave',
+      url: 'https://instalunchline.com/api/user/getFave',
       data: user
     }).then(function success(data) {
       collection = data.data.map(function(restaurant) {
@@ -92,7 +92,7 @@ angular.module('lunchline.services', [])
     console.log('Get recent update is called here is the collection', collection);
     $http({
       method: 'POST',
-      url: '/api/rest/recent',
+      url: 'https://instalunchline.com/api/rest/recent',
       data: collection
     }).then(function success(data) {
         collection = data.data.map(function(restaurant) {
@@ -157,7 +157,7 @@ angular.module('lunchline.services', [])
   function updateWait(objToSend) {
     $http({
       method: 'PUT',
-      url: '/api/rest/update',
+      url: 'https://instalunchline.com/api/rest/update',
       data: objToSend
     }).then(function successCallback(response) {
       console.log('SUCCESS on PUT request UPDATE');
@@ -249,7 +249,7 @@ angular.module('lunchline.services', [])
   var getUser = function(user) {
     return $http({
       method: 'POST',
-      url: '/api/user/profile',
+      url: 'https://instalunchline.com/api/user/profile',
       data: user
     }).then(function(res) {
       return res.data;
@@ -259,7 +259,7 @@ angular.module('lunchline.services', [])
   var sendUser = function(user) {
     return $http({
       method: 'POST',
-      url: '/api/user/user',
+      url: 'https://instalunchline.com/api/user/user',
       data: user
     }).then(function(res) {
       return res.data;
@@ -279,7 +279,7 @@ angular.module('lunchline.services', [])
     };
     return $http({
       method: 'PUT',
-      url: '/api/user/favorite',
+      url: 'https://instalunchline.com/api/user/favorite',
       data: data
     })
     .then(function(res){
@@ -294,7 +294,7 @@ angular.module('lunchline.services', [])
     };
     return $http({
       method: 'PUT',
-      url: '/api/user/removeFave',
+      url: 'https://instalunchline.com/api/user/removeFave',
       data: data
     })
     .then(function(res){
@@ -308,7 +308,7 @@ angular.module('lunchline.services', [])
     user.location = JSON.parse(sessionStorage['locationStorage']);
     return $http({
       method: 'POST',
-      url: '/api/user/getFave',
+      url: 'https://instalunchline.com/api/user/getFave',
       data: user
     }).then(function(res) {
       return res.data;
