@@ -7,3 +7,5 @@ deploy.sh
 lunchline/www/lib
 cert.pem
 ssl.key
+instalunchline_com.crt
+instalunchline_com.ca-bundle

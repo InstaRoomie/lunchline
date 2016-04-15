@@ -21,7 +21,9 @@ About
 
 InstaLunchline is a fork of the [Lunchline app](https://github.com/teamwolverine/lunchline), completely refactored into Ionic for a mobile-first experience.  
 
-InstaLunchline is a crowdsourced, hybird web/mobile app that lets users quickly search for restaurants around them and see what the wait times are to get their favorite food. 
+InstaLunchline is a crowdsourced, hybird web/mobile app that lets users quickly search for restaurants around them and see what the wait times are to get their favorite food.
+
+This app is built on Angular and Ionic with Firebase authentication and a Express backend with a Mongo/Mongoose DB.
 
 Features
 ---------
@@ -34,6 +36,7 @@ Features
 * Ability to see last updated check in time
 * Faster backend algorithm
 * Time decay algorithm
+* Deployed on Digital Ocean with NGINX routing and SSL certification
 
 Demo
 ---------
