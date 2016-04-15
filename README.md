@@ -1,6 +1,5 @@
 
 # InstaLunchline #
-
 ---
 
 
@@ -63,9 +62,9 @@ Structure
 ```
 .
 ├── lunchline             # Client-facing source code
-│   └── www               # Client-facing deployment code
-│        ├── build        # Minified code for deployment
-│        ├── img          # Image requirements
+│   └── www               
+│        ├── js           # Ionic/Angular client facing code
+│        ├── templates    # Html views for app
 │        └── index.html   # Client-facing deployment html
 ├── server                # Server-side source code
 |   ├── config            # Config requirements for api and database keys
