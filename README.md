@@ -1,19 +1,82 @@
 
-# InstaLunchline
+# InstaLunchline #
+
+---
+
+
+Table of Contents
+-----------------
+
+1. [About](#about)
+2. [Features](#features)
+3. [Demo](#demo)
+4. [Getting Started](#getting-started)
+5. [Usage](#usage)
+6. [Structure](#structure)
+7. [Troubleshooting](#troubleshooting)
+8. [Team](#team)
+
+
+About
+--------
 
 InstaLunchline is a fork of the [Lunchline app](https://github.com/teamwolverine/lunchline), completely refactored into Ionic for a mobile-first experience.  
 
 InstaLunchline is a crowdsourced, hybird web/mobile app that lets users quickly search for restaurants around them and see what the wait times are to get their favorite food. 
 
-# Features Added
+Features
+---------
+
 * Complete refactor into Ionic
+* User accounts and authentication
+* Ability to add favorite restaurants
+* Ability to search for favorite food
+* Ability to search for food in a different location
+* Ability to see last updated check in time
+* Faster backend algorithm
+* Time decay algorithm
 
-# Team
+Demo
+---------
+Check out the hybrid web app at [https://instalunchline.com](https://instalunchline.com).
 
-Many thanks to the original Lunchline team for the great idea.
-* Bobby Chong - Software Engineer
-* Daniel Kim - Software Engineer
-* Daniel Rizko - Software Engineer
-* Ethan Rubio - Software Engineer
+Getting Started
+---------------
+```
+ npm install
+ npm start
+ cd lunchline
+ sudo npm install -g cordova
+ sudo npm install -g ionic
+ npm install
+ bower install
+```
+Then visit http://localhost:8080.
+
+Usage
+-----
+#### `npm start`
+Runs the server (by default found at `localhost:8080`).
+
+Structure
+---------
+
+
+Troubleshooting
+---------------
+
+Having an issue? Please let us know! Report it, and we'll get to it as soon as possible.
+
+
+Team
+-----
+
+This project was created by the InstaRoomie Dev Team
+* [Bobby Chong](https://github.com/bobbychong) - Software Engineer
+* [Daniel Kim](https://github.com/DeeHKim) - Software Engineer
+* [Daniel Rizko](https://github.com/drizko) - Software Engineer
+* [Ethaniel Rubio](https://github.com/ethanrubio) - Software Engineer
+
+And many thanks to the original Lunchline team for the great idea and structure.
 
 
