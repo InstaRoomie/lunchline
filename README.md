@@ -7,7 +7,7 @@ Table of Contents
 -----------------
 
 1. [About](#about)
-2. [Features](#features)
+2. [Added Features](#added-features)
 3. [Demo](#demo)
 4. [Getting Started](#getting-started)
 5. [Usage](#usage)
@@ -25,7 +25,7 @@ InstaLunchline is a crowdsourced, hybrid web/mobile app that lets users quickly 
 
 This app is built on Angular and Ionic with Firebase authentication and a Express backend with a Mongo/Mongoose DB.
 
-Features
+Added Features
 ---------
 
 * Complete refactor into Ionic
