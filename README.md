@@ -53,7 +53,8 @@ Getting Started
  npm install
  bower install
 ```
-**Warning** Comment out SSL/HTTPSserver for app to run without SSL certificates
+**Warning** Comment out SSL/HTTPSserver for app to run without SSL certificates.
+
 Then visit http://localhost:8080.
 
 Usage
@@ -89,12 +90,12 @@ Having an issue? Please let us know! Report it, and we'll get to it as soon as p
 Team
 -----
 
-This project was created by the InstaRoomie Dev Team
+This project was created by the InstaRoomie Dev Team:
 * [Bobby Chong](https://github.com/bobbychong) - Software Engineer
 * [Daniel Kim](https://github.com/DeeHKim) - Software Engineer
 * [Daniel Rizko](https://github.com/drizko) - Software Engineer
 * [Ethaniel Rubio](https://github.com/ethanrubio) - Software Engineer
 
-And many thanks to the original Lunchline team for the great idea and structure.
+With many thanks to the original Lunchline team for the great idea and structure.
 
 
