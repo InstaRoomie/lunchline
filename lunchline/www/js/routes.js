@@ -7,6 +7,12 @@ angular.module('lunchline.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+  .state('menu', {
+    url: '/side-menu',
+    templateUrl: 'templates/menu.html',
+    abstract: true,
+    controller: 'authController'
+  })
   .state('menu.list', {
     url: '/list',
     views: {
@@ -24,12 +30,6 @@ angular.module('lunchline.routes', [])
         controller: 'restaurantController'
       }
     }
-  })
-  .state('menu', {
-    url: '/side-menu',
-    templateUrl: 'templates/menu.html',
-    abstract:true,
-    controller: 'authController'
   })
   .state('menu.favorites', {
     url: '/favorites',
@@ -84,6 +84,6 @@ angular.module('lunchline.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/menu.list')
+$urlRouterProvider.otherwise('/side-menu/list')
 
 })
