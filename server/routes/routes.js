@@ -6,7 +6,7 @@ module.exports = function(app, express) {
   var profileRouter = express.Router();
 
   // Serve static files
-  app.use(express.static(__dirname + '/../../client'));//serving all static files to our client folder
+  app.use(express.static(__dirname + '/../../lunchline/www/'));
   app.use('/node', express.static(__dirname + './../../node_modules/'));
   app.use('/bower', express.static(__dirname + './../../bower_components/'));
 
