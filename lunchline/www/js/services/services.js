@@ -1,5 +1,5 @@
 angular.module('lunchline.services', [])
-.factory('Auth', function($http, $state, $window, $firebaseAuth){
+.factory('Auth', function($http, $state, $window, $firebaseAuth) {
   var ref = new Firebase('https://instalunchline.firebaseio.com');
   var auth = $firebaseAuth(ref);
   var authRef = new Firebase("https://instalunchline.firebaseio.com/.info/authenticated");
@@ -30,7 +30,6 @@ angular.module('lunchline.services', [])
       if (error) {
         console.log("Login Failed!", error);
       } else {
-        console.log("Authenticated successfully with payload:", authData);
         $state.go('menu.list')
       }
     });
@@ -42,7 +41,7 @@ angular.module('lunchline.services', [])
     fbLogin: fbLogin,
     logout: logout,
     getAuth: getAuth
-  }
+  };
 })
 .factory('Data', function($http) {
 
@@ -52,10 +51,9 @@ angular.module('lunchline.services', [])
   var getData = function(userLoc, callback) {
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/rest/search',
+      url: '/api/rest/search',
       data: userLoc
     }).then(function success(data) {
-      console.log(data)
         collection = data.data.map(function(restaurant) {
           return {
             restaurant: restaurant
@@ -64,16 +62,15 @@ angular.module('lunchline.services', [])
         callback(collection);
       },
       function error(response) {
-        console.log("ERROR: ", response);
+        console.error("ERROR: ", response);
       });
   };
 
   var getFavorites = function(user, callback) {
     user.location = JSON.parse(sessionStorage['locationStorage']);
-    console.log(user.location);
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/getFave',
+      url: '/api/user/getFave',
       data: user
     }).then(function success(data) {
       collection = data.data.map(function(restaurant) {
@@ -84,7 +81,7 @@ angular.module('lunchline.services', [])
       callback(collection);
     },
     function errer(response) {
-      console.log("ERROR: ", response);
+      console.error("ERROR: ", response);
     });
   };
   // Storage of clicked item on listView so that restView can pull up data
@@ -95,10 +92,9 @@ angular.module('lunchline.services', [])
     console.log('Get recent update is called here is the collection', collection);
     $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/rest/recent',
+      url: '/api/rest/recent',
       data: collection
     }).then(function success(data) {
-        console.log(data);
         collection = data.data.map(function(restaurant) {
           return {
             restaurant: restaurant
@@ -108,7 +104,7 @@ angular.module('lunchline.services', [])
         callback(collection);
       },
       function error(response) {
-        console.log("ERROR: ", response);
+        console.error("ERROR: ", response);
       });
   };
 
@@ -127,10 +123,9 @@ angular.module('lunchline.services', [])
     getCollection: getCollection,
     getSearchCalled: getSearchCalled,
     getFavorites: getFavorites
-  }
+  };
 // Distance factory: calculates the distance of a lat/long from the user's lat/long
 })
-
 .factory('distance', function() {
   var calc = function(userLoc, destinLoc) {
     //Expects objects with properties 'lat & long'
@@ -150,27 +145,24 @@ angular.module('lunchline.services', [])
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = (R * c) * 0.621371;
-    return Math.round(d * 10) / 10
+    return Math.round(d * 10) / 10;
   }
 
   return {
     calc: calc
-  }
+  };
 // Update factory : updates the database on a reported restaurant wait time with put request
 })
-
 .factory('Update', function($http) {
-
   function updateWait(objToSend) {
     $http({
       method: 'PUT',
-      url: 'http://localhost:8080/api/rest/update',
+      url: '/api/rest/update',
       data: objToSend
     }).then(function successCallback(response) {
-      // console.log('PUT: Sent ' + JSON.stringify(objToSend) + ' successfully');
-      // console.log('Response from server is : ', response);
+      console.log('SUCCESS on PUT request UPDATE');
     }, function errorCallback(response) {
-      console.log('ERROR on Put Request!');
+      console.error('ERROR on Put Request!');
     });
   }
 
@@ -178,7 +170,6 @@ angular.module('lunchline.services', [])
     updateWait: updateWait
   };
 })
-
 .factory('Geolocation', function() {
 
   // get userLocation for restaurantView address
@@ -192,13 +183,13 @@ angular.module('lunchline.services', [])
     }
     //Get the latitude and the longitude;
     function successFunction(position) {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-        codeLatLng(lat, lng)
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      codeLatLng(lat, lng)
     }
 
     function errorFunction(){
-        alert('Geocoder failed');
+      alert('Geocoder failed');
     }
 
     function initialize() {
@@ -206,14 +197,12 @@ angular.module('lunchline.services', [])
     }
 
     function codeLatLng(lat, lng) {
-
       userLocation.lat = lat;
       userLocation.long = lng;
 
       var latlng = new google.maps.LatLng(lat, lng);
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-        console.log(results)
           if (results[1]) {
            //formatted address
            /*alert(results[0].formatted_address)*/
@@ -232,11 +221,6 @@ angular.module('lunchline.services', [])
               }
             }
           }
-          //city data
-          console.log('this is the city ', city.short_name);
-          console.log('this is the state ', state.short_name);
-          /*alert(city.short_name + ' ' + city.long_name)*/
-
           userLocation.city = city;
           userLocation.state = state;
 
@@ -256,8 +240,7 @@ angular.module('lunchline.services', [])
    return {
      locationInfo: locationInfo,
      userLocation: userLocation
-   }
-
+   };
 })
 .factory('User', function($http) {
 
@@ -266,7 +249,7 @@ angular.module('lunchline.services', [])
   var getUser = function(user) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/profile',
+      url: '/api/user/profile',
       data: user
     }).then(function(res) {
       return res.data;
@@ -276,7 +259,7 @@ angular.module('lunchline.services', [])
   var sendUser = function(user) {
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/user',
+      url: '/api/user/user',
       data: user
     }).then(function(res) {
       return res.data;
@@ -296,11 +279,11 @@ angular.module('lunchline.services', [])
     };
     return $http({
       method: 'PUT',
-      url: 'http://localhost:8080/api/user/favorite',
+      url: '/api/user/favorite',
       data: data
     })
     .then(function(res){
-      console.log(res.body);
+      return res;
     });
   };
 
@@ -309,14 +292,13 @@ angular.module('lunchline.services', [])
       uid: user,
       favorite: rest
     };
-    console.log('services.js')
     return $http({
       method: 'PUT',
-      url: 'http://localhost:8080/api/user/removeFave',
+      url: '/api/user/removeFave',
       data: data
     })
     .then(function(res){
-      console.log(res.body);
+      return res;
     });
   };
 
@@ -324,13 +306,11 @@ angular.module('lunchline.services', [])
 
   var getFavorites = function(user) {
     user.location = JSON.parse(sessionStorage['locationStorage']);
-    console.log(user.location);
     return $http({
       method: 'POST',
-      url: 'http://localhost:8080/api/user/getFave',
+      url: '/api/user/getFave',
       data: user
     }).then(function(res) {
-      console.log(res.data);
       return res.data;
     });
   };
@@ -340,5 +320,5 @@ angular.module('lunchline.services', [])
     getFavorites: getFavorites,
     removeFavorite: removeFavorite,
     clickedItem: clickedItem
-  }
+  };
 })

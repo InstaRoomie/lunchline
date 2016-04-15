@@ -2,28 +2,33 @@ angular.module('lunchline.list', [])
 
 .controller('listController', function(Data, $scope, Geolocation, $ionicLoading, $ionicHistory, $ionicNavBarDelegate, $ionicSideMenuDelegate) {
    $scope.data = [];
+   
+   $scope.$on('$ionicView.beforeEnter', function(event, viewData) {
+     viewData.enableBack = false;
+   });
+   
+   $scope.$on('$ionicView.leave', function(event, viewData) {
+     // disable search icon on leave if showing
+     if ($scope.locationBarShow === true) {
+       $scope.showLocationBar();
+     }
+   });
+   
 
    // go back updates when you hit back
    $scope.$root.GoBack = function() {
-     if ($ionicHistory.backTitle() === "Login" || $ionicHistory.backTitle() ==='Signup') {
-       $ionicHistory.nextViewOptions({
-         disableBack: true
-         });
-     } else {
-       Data.getRecentUpdate(function(data) {
-         $ionicHistory.goBack();
-       });
-     }
+     Data.getRecentUpdate(function(data) {
+       $ionicHistory.goBack();
+     });
    };
-
+   
    $scope.short_name = 'address, city, zip';
    $scope.foodAndLocation = {};
-   $scope.search = { foodType: null, location:null };
+   $scope.search = {foodType: null, location:null};
 
-   if( sessionStorage['locationStorage'] === undefined ) {
+   if (sessionStorage['locationStorage'] === undefined) {
      $scope.userLocation = {};
-   }
-   else {
+   } else {
      $scope.userLocation = JSON.parse(sessionStorage['locationStorage']);
      $scope.short_name = $scope.userLocation.city.short_name + ', ' + $scope.userLocation.state.short_name;
    }
@@ -31,14 +36,14 @@ angular.module('lunchline.list', [])
    // get recent updates when you press back
    $scope.getCollection = function() {
      Data.getCollection(function(fetchedData) {
-         if (fetchedData.length > 0) {
-           $scope.data = fetchedData;
-         }
-         if (Data.getSearchCalled() === true) {
-           console.log('this is the truth from back search ', Data.getSearchCalled());
-           $scope.searchCalled = true;
-         }
-       });
+       if (fetchedData.length > 0) {
+         $scope.data = fetchedData;
+        }
+       if (Data.getSearchCalled() === true) {
+         console.log('this is the truth from back search ', Data.getSearchCalled());
+         $scope.searchCalled = true;
+       }
+     });
    };
 
    $scope.getCollection();
@@ -72,7 +77,6 @@ angular.module('lunchline.list', [])
      $scope.show();
      if ($scope.userLocation && $scope.search.location === null) {
        $scope.foodAndLocation.foodType = $scope.search.foodType;
-
        $scope.foodAndLocation.userLocation = $scope.userLocation;
        console.log('using geo location ', $scope.foodAndLocation);
        Data.getData($scope.foodAndLocation, function(fetchedData) {
@@ -123,20 +127,10 @@ angular.module('lunchline.list', [])
    $scope.show = function() {
      $ionicLoading.show({
        // The text to display in the loading indicator
-       content: '<div style="display: flex; justify-content: center; align-items: center"><i class="ion-loading-c"></i></div>',
-
+       content: '<div><i class="ion-loading-c"></i></div>',
+       
        // The animation to use
        animation: 'fade-in',
-
-       // Will a dark overlay or backdrop cover the entire view
-       showBackdrop: true,
-
-       // The maximum width of the loading indicator
-       // Text will be wrapped if longer than maxWidth
-       maxWidth: 200,
-
-       // The delay in showing the indicator
-       showDelay: 0
      });
    };
 

@@ -1,37 +1,100 @@
 
-# Lunchline
-
-It's 12:00. Time for lunch. Where to go, though? There are only so many hours in the day, and lunch hour is the most sacred of hours. We realize lunch time is valuable, which is why we are happy to bring you Lunchline!
-
-Lunchline is a crowdsourced, mobile-first designed app that lets you quickly take a peek at the restaurants around you and see what the wait time to get your favorite food is. Simply navigate to lunchline.herokuapp.com, and boom! A list of restaurants in your immediate area appears with a green light, yellow light, and red light. Green means no wait, yellow means your food may take a bit, and red means lunch at your own risk.
-
-Lunchline is designed in Angular and ExpressJS. We designed it to be as simple as possible, so you can make a quick decision and enjoy your lunch time. So please, take a look at the site and enjoy!
+# InstaLunchline #
+---
 
 
-# Future Features
+Table of Contents
+-----------------
 
-The current code you see represents our MVP. Lunchline will evolve and become even cooler! Some features we would like to add are:
+1. [About](#about)
+2. [Features](#features)
+3. [Demo](#demo)
+4. [Getting Started](#getting-started)
+5. [Usage](#usage)
+6. [Structure](#structure)
+7. [Troubleshooting](#troubleshooting)
+8. [Team](#team)
 
-* Ability to filter what types of restaurants you're in the mood for
-* Faster back end algorithm
-* Restaurant menus
-* Restaurant photos
-* Reviews of restaurants
-* Display last updated time
-* Time reset/decay
-* User accounts so they can save favorite restaurants, etc
-* Online ordering
-* An incentive/reward system
 
-These are just a few of the ideas we want to implement and this list will constantly evolve. Feel free to give some input on ideas you'd like to see!
+About
+--------
 
-# Team
-This project was created by:
-* Rick Yeh - Product Owner/frontend developer
-* Andy MacDonald - Scrum Master/backend developer
-* Daniel Rizko - Software Engineer
-* Bobby Chong - Software Engineer
-* Daniel Kim - Software Engineer
-* Ethan Rubio - Software Engineer
-* Monica Grandy - Backend developer
-* Cameron Roark - Frontend developer
+InstaLunchline is a fork of the [Lunchline app](https://github.com/teamwolverine/lunchline), completely refactored into Ionic for a mobile-first experience.  
+
+InstaLunchline is a crowdsourced, hybird web/mobile app that lets users quickly search for restaurants around them and see what the wait times are to get their favorite food.
+
+This app is built on Angular and Ionic with Firebase authentication and a Express backend with a Mongo/Mongoose DB.
+
+Features
+---------
+
+* Complete refactor into Ionic
+* User accounts and authentication
+* Ability to add favorite restaurants
+* Ability to search for favorite food
+* Ability to search for food in a different location
+* Ability to see last updated check in time
+* Faster backend algorithm
+* Time decay algorithm
+* Deployed on Digital Ocean with NGINX routing and SSL certification
+
+Demo
+---------
+Check out the hybrid web app at [https://instalunchline.com](https://instalunchline.com).
+
+Getting Started
+---------------
+```
+ npm install
+ npm start
+ cd lunchline
+ sudo npm install -g cordova
+ sudo npm install -g ionic
+ npm install
+ bower install
+```
+**Warning** Comment out SSL/HTTPSserver for app to run without SSL certificates
+Then visit http://localhost:8080.
+
+Usage
+-----
+#### `npm start`
+Runs the server (by default found at `localhost:8080`).
+
+Structure
+---------
+```
+.
+├── lunchline             # Client-facing source code
+│   └── www               
+│        ├── js           # Ionic/Angular client facing code
+│        ├── templates    # Html views for app
+│        └── index.html   # Client-facing deployment html
+├── server                # Server-side source code
+|   ├── config            # Config requirements for api and database keys
+|   ├── controllers       # Server controllers that interact with client side actions
+|   ├── models            # Mongoose schema
+|   ├── util              # General helper functions
+|   ├── routes            # Routing for server side interaction
+|   └── server.js         # Server bootstrap
+└── index.js              # Starts the Express server
+```
+
+Troubleshooting
+---------------
+
+Having an issue? Please let us know! Report it, and we'll get to it as soon as possible.
+
+
+Team
+-----
+
+This project was created by the InstaRoomie Dev Team
+* [Bobby Chong](https://github.com/bobbychong) - Software Engineer
+* [Daniel Kim](https://github.com/DeeHKim) - Software Engineer
+* [Daniel Rizko](https://github.com/drizko) - Software Engineer
+* [Ethaniel Rubio](https://github.com/ethanrubio) - Software Engineer
+
+And many thanks to the original Lunchline team for the great idea and structure.
+
+

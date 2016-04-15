@@ -2,11 +2,13 @@ angular.module('lunchline.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
+  .state('menu', {
+    url: '/side-menu',
+    templateUrl: 'templates/menu.html',
+    abstract: true,
+    controller: 'authController'
+  })
   .state('menu.list', {
     url: '/list',
     views: {
@@ -24,12 +26,6 @@ angular.module('lunchline.routes', [])
         controller: 'restaurantController'
       }
     }
-  })
-  .state('menu', {
-    url: '/side-menu',
-    templateUrl: 'templates/menu.html',
-    abstract:true,
-    controller: 'authController'
   })
   .state('menu.favorites', {
     url: '/favorites',
@@ -84,6 +80,6 @@ angular.module('lunchline.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/menu.list')
+$urlRouterProvider.otherwise('/side-menu/list')
 
 })

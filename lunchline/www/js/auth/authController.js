@@ -1,11 +1,17 @@
 angular.module('lunchline.auth', [])
 
 
-.controller('authController', function($scope, Auth, User, $firebaseObject, $firebaseAuth, $state, Geolocation) {
+.controller('authController', function($scope, Auth, User, $firebaseObject, $firebaseAuth, $state, Geolocation, $ionicHistory, $location, $ionicNavBarDelegate) {
   var ref = new Firebase('https://instalunchline.firebaseio.com');
-  var authRef = new Firebase("https://instalunchline.firebaseio.com/.info/authenticated");
+  var authRef = new Firebase('https://instalunchline.firebaseio.com/.info/authenticated');
 
   $scope.user = {};
+  
+  $scope.$on('$ionicView.beforeEnter', function(event, viewData) {
+    viewData.enableBack = false;
+  });
+  
+  $scope.error = null;
 
   $scope.login = function(){
     ref.authWithPassword({
@@ -14,22 +20,20 @@ angular.module('lunchline.auth', [])
     }, function(error, authData){
       if (error) {
         switch (error.code) {
-          case "INVALID_EMAIL":
-            console.log("The specified user account email is invalid.");
+          case 'INVALID_EMAIL':
+            $scope.error = 'The specified user account email is invalid.';
             break;
-          case "INVALID_PASSWORD":
-            console.log("The specified user account password is incorrect.");
+          case 'INVALID_PASSWORD':
+            $scope.error = 'The specified user account password is incorrect.';
             break;
-          case "INVALID_USER":
-            console.log("The specified user account does not exist.");
+          case 'INVALID_USER':
+            $scope.error = 'The specified user account does not exist.';
             break;
           default:
-            console.log("Error logging user in:", error);
+            console.error('Error logging user in:', error);
         }
       } else {
-        console.log('trying to log in!')
         User.getUser(authData)
-        console.log("Authenticated successfully with payload:", authData);
         $state.go('menu.list');
       }
     });
@@ -47,7 +51,7 @@ angular.module('lunchline.auth', [])
         User.sendUser(user);
         $scope.login();
       } else {
-        console.log("Error creating user:", error);
+        console.error('Error creating user:', error);
       }
     })
   }

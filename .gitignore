@@ -5,3 +5,7 @@ server/config.js
 deploy.sh
 .DS_Store
 lunchline/www/lib
+cert.pem
+ssl.key
+instalunchline_com.crt
+instalunchline_com.ca-bundle
