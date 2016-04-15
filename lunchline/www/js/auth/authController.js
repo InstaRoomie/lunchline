@@ -10,6 +10,8 @@ angular.module('lunchline.auth', [])
   $scope.$on('$ionicView.beforeEnter', function(event, viewData) {
     viewData.enableBack = false;
   });
+  
+  $scope.error = null;
 
   $scope.login = function(){
     ref.authWithPassword({
@@ -19,21 +21,19 @@ angular.module('lunchline.auth', [])
       if (error) {
         switch (error.code) {
           case 'INVALID_EMAIL':
-            console.log('The specified user account email is invalid.');
+            $scope.error = 'The specified user account email is invalid.';
             break;
           case 'INVALID_PASSWORD':
-            console.log('The specified user account password is incorrect.');
+            $scope.error = 'The specified user account password is incorrect.';
             break;
           case 'INVALID_USER':
-            console.log('The specified user account does not exist.');
+            $scope.error = 'The specified user account does not exist.';
             break;
           default:
-            console.log('Error logging user in:', error);
+            console.error('Error logging user in:', error);
         }
       } else {
-        console.log('trying to log in!')
         User.getUser(authData)
-        console.log('Authenticated successfully with payload:', authData);
         $state.go('menu.list');
       }
     });
@@ -51,7 +51,7 @@ angular.module('lunchline.auth', [])
         User.sendUser(user);
         $scope.login();
       } else {
-        console.log('Error creating user:', error);
+        console.error('Error creating user:', error);
       }
     })
   }

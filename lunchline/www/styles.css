@@ -264,6 +264,10 @@ a.list-group-item {
   text-align: center
 }
 
+.error {
+  text-align: center;
+  color: #E91E63;
+}
 /*
 Responsive via media queries.  Default scale is for mobile
 On device width over 736, which is iPhone 6 Plus, we scale font size down
