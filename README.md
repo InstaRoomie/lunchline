@@ -60,7 +60,22 @@ Runs the server (by default found at `localhost:8080`).
 
 Structure
 ---------
-
+```
+.
+├── lunchline             # Client-facing source code
+│   └── www               # Client-facing deployment code
+│        ├── build        # Minified code for deployment
+│        ├── img          # Image requirements
+│        └── index.html   # Client-facing deployment html
+├── server                # Server-side source code
+|   ├── config            # Config requirements for api and database keys
+|   ├── controllers       # Server controllers that interact with client side actions
+|   ├── models            # Mongoose schema
+|   ├── util              # General helper functions
+|   ├── routes            # Routing for server side interaction
+|   └── server.js         # Server bootstrap
+└── index.js              # Starts the Express server
+```
 
 Troubleshooting
 ---------------
