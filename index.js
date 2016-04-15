@@ -6,7 +6,7 @@ var httpPort = 8080;
 var httpsPort = 8081;
 
 var ca = [];
-var chain = fs.readFileSync('instalunchline_com.ca-bundle', 'utf8');
+var chain = fs.readFileSync('ssl-bundle.crt', 'utf8');
 chain = chain.split('\n');
 var cert = [];
 
