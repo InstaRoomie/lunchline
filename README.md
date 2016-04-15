@@ -53,6 +53,7 @@ Getting Started
  npm install
  bower install
 ```
+**Warning** Comment out SSL/HTTPSserver for app to run without SSL certificates
 Then visit http://localhost:8080.
 
 Usage
