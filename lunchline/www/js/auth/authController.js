@@ -7,11 +7,9 @@ angular.module('lunchline.auth', [])
 
   $scope.user = {};
   
-  $scope.$root.GoBack = function() {
-    if ($ionicHistory.backTitle() === 'Login') {
-      $ionicHistory.goBack();
-    }
-  }
+  $scope.$on('$ionicView.beforeEnter', function(event, viewData) {
+    viewData.enableBack = false;
+  });
 
   $scope.login = function(){
     ref.authWithPassword({

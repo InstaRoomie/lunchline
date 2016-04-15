@@ -229,7 +229,7 @@ a.list-group-item {
   margin: auto 3%;
 }
 
-.loading{
+.loading {
   position: absolute !important;
   top:0 !important;
   bottom: 0 !important;
@@ -258,6 +258,10 @@ a.list-group-item {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.greeter {
+  text-align: center
 }
 
 /*
